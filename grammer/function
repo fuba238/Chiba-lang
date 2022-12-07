@@ -2,8 +2,6 @@
 
 ①(引数) => {処理} -> 変数
 (a,b) => { return a + b; } -> add;
-a,b => {return a + b;} -> add;
 
 ②引数 |> 関数
-a,b |> add;
 (a,b) |> add;
