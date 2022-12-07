@@ -1,0 +1,13 @@
+Event.new -> ev;
+keyboard.new -> kb;
+
+”文字列”を受け取ったとき
+{ ev = "文字列" }.then {}
+
+”旗”をクリックしたとき
+{ ev = "flag" }.then {}
+
+"キー"を入力したとき
+{ kb = "space" }.then {}
+
+"背景"が変わったときは無し
