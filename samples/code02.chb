@@ -2,39 +2,47 @@ https://scratch.mit.edu/projects/244895240/editor/
 
 Event.new -> ev;
 //ステージ生成する際の書き方が未定
-stage.new;
+Stage.new -> stage;
 
-animals.new -> cat;
-animals.new -> bear;
+Sprite.new "ネコ" -> cat;
+Sprite.new "クマ" -> bear;
+
+"へや" |> stage;
+"ゆき" |> stage;
 
 //ステージ
-
-ev.click (obj) => {
+{ ev = "green" }.then {
   //ステージの背景もスプライトのコスチュームと同様に番号で管理する 1:部屋 2:雪
-  stage.background 1; 
-  3 |> wait;
-  ev.send "部屋の中の会話";
-  stage.background 2;
+  "へや" |> stage.background; 
+  { 3.seconds }.wait;
+  "部屋の中の会話" |> ev;
+  { ev = "会話終了" }.wait;
+  "ゆき" |> stage.background;
+  "ゆき" |> ev;
 }
 
 //ネコ
 
-ev.receive "message",(msg) => {
+{ ev = "部屋の中の会話" }.then {
   //2秒間言う
-  cat.say "つまらないね",2;
-  ev.send "つまらない";
+  cat.say "つまらないね";
+  { 2.seconds }.wait;
+  cat.say "";
+  "つまらない" |> ev;
 }
 
-stage.background = 2.if {
+{ ev = "ゆき" }.then {
   cat.say "さむい!!";
 }
 
 //熊
-
-ev.receive "message",(msg) => {
-  bear.say "そとであそぼう!",2;
+{ ev = "つまらない" }.then {
+  bear.say "そとであそぼう!";
+  { 2.seconds }.wait;
+  bear.say "";
+  "会話終了" |> ev;
 }
 
-stage.baclground = 2.if {
+{ ev = "ゆき" }.then {
   bear.say "気持ちいい";
 }
