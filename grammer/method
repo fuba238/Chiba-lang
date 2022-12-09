@@ -19,3 +19,6 @@ whileメソッド　while文
 thenメソッド イベント処理　
 waitメソッド　何秒間待つ
 randomメソッド　チルダ演算子の範囲内から？
+secondsメソッド　数値に対して秒
+minutesメソッド　数値に対して分
+hoursメソッド　数値に対して時間
