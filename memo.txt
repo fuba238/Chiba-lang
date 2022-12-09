@@ -15,7 +15,6 @@
 
 
 { ev = "green" }.then{}
-3.seconds |> cat.wait; waitはオブジェクトごとに使用できた方がいい
 cat.say "文字列";
 "文字列" |> cat.say;
 "文字列" |> cat.line;
