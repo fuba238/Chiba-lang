@@ -1,15 +1,21 @@
 オブジェクト.メソッド
-(1<x).if ()=>{}
+(1<x).if {}
 (1~10 step:2).each (i)=>{}
-[1,2,3,4,5].each (i)=>{}
+[1,2,3,4,5].each (i) => {}
 (a) => { return a * a; } -> 
-(a,b) |> { return a + b; } -> add;
+(a,b) => { return a + b; } -> add;
 (a,b) |> add;
 {1<x}.while {}
-{ stage.background = 2 }.then {}
 { 2.seconds }.wait; 2秒経つまで待つ
 { ev = "文字列" }.wait;　evに文字列が送られるまで待つ
 
 .say "文字列"; 手動で消す
 {2.seconds}.wait;
 .say "";
+
+
+{ ev = "green" }.then{}
+3.seconds |> cat.wait; waitはオブジェクトごとに使用できた方がいい
+cat.say "文字列";
+"文字列" |> cat.say;
+"文字列" |> cat.line;
