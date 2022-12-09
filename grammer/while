@@ -1,11 +1,10 @@
 while ~の間
 
 ①比較式.while {処理}
-1 < x.while {}
+(1 < x).while {}
 
 ②ブール値.while {処理}　無限ループ
 true.while {}
 
 ③メソッド.while {処理}
-1,2 |> kn.touch.while {}
 (1,2) |> kn.touch.while {}
