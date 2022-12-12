@@ -18,3 +18,18 @@
 cat.say "文字列";
 "文字列" |> cat.say;
 "文字列" |> cat.line;
+
+cat.program {
+  { ev = "部屋の中の会話" }.then {
+    //2秒間言う
+    cat.say "つまらないね";
+    { 2.seconds }.wait;
+    cat.say "";
+    "つまらない" |> ev;
+  }
+
+  { ev = "ゆき" }.then {
+    cat.say "さむい!!";
+  }
+}
+
