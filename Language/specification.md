@@ -28,10 +28,8 @@ Splite.new -> cat;
   cat.x + i |> cat.x;
 }
 ```
-1行目の<font color="red">Splite.new -> cat;</font>では，スプライトの生成を行なっています．例ではcatという変数名のスプライトを生成しています．
-
-2行目の<font color="red">(1~10).each</font>は，each文で繰り返し処理を表しています．例では10回繰り返し処理を行います．
-
-2行目から4行目の<font color="red">(i) => { cat.x + i |> cat.x }</font>は，ラムダ式でeach文で繰り返す処理を記述しています，例では，cat.xはスプライトのx軸の値を表しており，x軸の値にiを加算する処理を10回行います．
+1行目の<font color="red">Splite.new -> cat;</font>では，スプライトの生成を行なっています．例ではcatという変数名のスプライトを生成しています．<br>
+2行目の<font color="red">(1~10).each</font>は，each文で繰り返し処理を表しています．例では10回繰り返し処理を行います．<br>
+2行目から4行目の<font color="red">(i) => { cat.x + i |> cat.x }</font>は，ラムダ式でeach文で繰り返す処理を記述しています，例では，cat.xはスプライトのx軸の値を表しており，x軸の値にiを加算する処理を10回行います．<br>
 ## データ型
 ### 数値型
