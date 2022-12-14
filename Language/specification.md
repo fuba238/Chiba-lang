@@ -22,3 +22,7 @@ moge
 ## test2
 ### test2-2
 fuga
+
+'''vb
+Splite.new -> cat;
+'''
