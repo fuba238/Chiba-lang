@@ -24,9 +24,12 @@
 ### 記述例
 ```vb
 Splite.new -> cat;
-(1~10).each{
-  cat.move x:10;
+(1~10).each (i) => {
+  cat.x + i |> cat.x;
 }
 ```
+1行目の<font color="blue">Splite.new -> cat;</font>では，スプライトの生成を行なっています．例ではcatという変数名のスプライトを生成しています．
+2行目の<font color="blue">(1~10).each</font>は，each文で繰り返し処理を表しています．例では10回繰り返し処理を行います．
+2行目から4行目の<font color="blue">(i) => { cat.x + i |> cat.x }</font>は，ラムダ式でeach文で繰り返す処理を記述しています，例では，cat.xはスプライトのx軸の値を表しており，x軸の値にiを加算する処理を10回行います．
 ## データ型
 ### 数値型
