@@ -23,6 +23,6 @@ moge
 ### test2-2
 fuga
 
-'''vb
+```vb
 Splite.new -> cat;
-'''
+```
