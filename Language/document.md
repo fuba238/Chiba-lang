@@ -22,9 +22,7 @@
   - [比較演算子](#比較演算子)
   - [論理演算子](#論理演算子)
 - [関数](#関数)
-- [メソッド](#メソッド)
-  - [each](#each)
-  - 
+- [Scratchとの機能比較](#Scratchとの機能比較)
 - [](#)
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -158,5 +156,5 @@ true or false;
 |or|OR演算子|
 
 ## 関数
-## メソッド
-### each
+
+## Scratchとの記述比較
