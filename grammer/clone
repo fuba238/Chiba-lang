@@ -1,0 +1,10 @@
+Splite.new -> cat;
+Event.new -> ev;
+
+{ ev = "flag" }.then {
+  (1~10).each (i) => {
+    cat.clone {
+      
+    }
+  }
+}
