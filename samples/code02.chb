@@ -19,6 +19,7 @@ Sprite.new "クマ" -> bear;
   { ev = "会話終了" }.wait;
   "ゆき" |> stage.background;
   "ゆき" |> ev;
+  //パイプラインとオプショナルパラメータは同義
 }
 
 //ネコ
