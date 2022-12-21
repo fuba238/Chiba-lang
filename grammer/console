@@ -1,0 +1,4 @@
+console ("文字列");
+
+"文字列" |> console.defalut;
+console.default "文字列";
