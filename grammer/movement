@@ -1,6 +1,6 @@
 x歩動かす＝向きの方向へ進む splite.walk 10; splite.walk 10; 
-x座標をx，y座標をyにする splite.move x:10, y:10;
-x座標をxずつ変える ;
+x座標をx，y座標をyにする splite.move x:10, y:10; x 10 y 10
+x座標をxずつ変える splite.x + 10 -> splite.x; splite.step 10;
 x座標をxにする splite.move x:10;
 y座標をyずつ使える ;
 y座標をyにする splite.move y:10;
