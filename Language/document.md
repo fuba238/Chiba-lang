@@ -22,7 +22,12 @@
   - [比較演算子](#比較演算子)
   - [論理演算子](#論理演算子)
 - [関数](#関数)
-- [Scratchの類似機能](#Scratchの類似機能)
+- [Scratchとの機能比較](#Scratchとの機能比較)
+  - [動き](#動き)
+    - [walk](#walk)
+    - [move](#move)
+    - [step](#step)
+  - [](#)
 - [](#)
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -191,7 +196,7 @@ true or false;
 ```
 パイプライン演算子を使用することで，連続した関数の実行が左から右へと読みやすくなる．
 
-## Scratchの類似機能
+## Scratchとの機能比較
 ### 動き
 #### walk
 ![walk](images/walk.png)
