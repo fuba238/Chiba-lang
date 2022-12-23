@@ -201,9 +201,9 @@ cat.walk 10;
 ```
 `スプライト名.walk`でスプライトの向いてる方向へ，指定した数値の距離を移動する．
 #### move
-![move_x_y](images/move_x_y.png)
-![move_x_y_time](images/move_x_y_time.png)
-![move_x](images/move_x.png)
+![move_x_y](images/move_x_y.png)<br>
+![move_x_y_time](images/move_x_y_time.png)<br>
+![move_x](images/move_x.png)<br>
 ![move_y](images/move_y.png)
 ```
 Splite.new -> cat;
