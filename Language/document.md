@@ -236,8 +236,8 @@ cat.step y:-10;
 `スプライト名.step`でスプライトの元座標に対して指定した数値分の変更を行う．オプショナルパラメータにより，変更する要素を指定する．`x:数値`でx座標に対する変化量を与える．`y;数値`でy座標に対する変化量を与える．`x:10`や`y:-10`のように正負の値どちらも指定することができる．
 
 #### turnメソッド
-![turn_right](images/turn_right.png)
-![turn left](images/turn_left.png)
+![turn_right](images/turn_right.png)<br>
+![turn left](images/turn_left.png)<br>
 ![turn](images/turn.png)
 ```
 Splite.new -> cat;
