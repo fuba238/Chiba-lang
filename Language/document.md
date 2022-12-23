@@ -27,9 +27,10 @@
     - [walkメソッド](#walkメソッド)
     - [moveメソッド](#moveメソッド)
     - [stepメソッド](#stepメソッド)
+    - [turnメソッド](#turnメソッド)
     - [xメソッド](#xメソッド)
     - [yメソッド](#yメソッド)
-  - [](#)
+  - [見た目](#見た目)
 - [](#)
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -203,6 +204,7 @@ true or false;
 
 ### 動き
 Scratchにおける「動き」に関連するブロックとの類似機能について記述する．
+
 #### walkメソッド
 ![walk](images/walk.png)
 ```
@@ -263,6 +265,11 @@ cat.y -> num_y; //-10
 `スプライト名.y`でスプライトの所持しているx座標の値を呼び出す．
 
 ### 見た目
+Scratchにおける「見た目」に関連するブロックとの類似機能について記述する．
+
+#### lineメソッド
+
+
 ### 音
 ### イベント
 ### 制御
