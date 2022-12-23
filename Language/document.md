@@ -194,8 +194,25 @@ true or false;
 ## Scratchの類似機能
 ### 動き
 #### walk
-![数歩動かす](images/walk.png)
+![walk](images/walk.png)
+```
+Splite.new -> cat;
+cat.walk 10;
+```
+`スプライト名.walk`でスプライトの向いてる方向へ，指定した数値の距離を移動する．
 #### move
+![move_x_y](images/move_x_y.png)
+![move_x_y_time](images/move_x_y_time.png)
+![move_x](images/move_x.png)
+![move_y](images/move_y.png)
+```
+Splite.new -> cat;
+cat.move x:10, y:10;
+cat.move x:10, y:10, time:2;
+cat.move x:10;
+cat.move y:10;
+```
+`スプライト名.move`で座標を指定する移動を行う．オプショナルパラメータにより，変更する要素を指定する．`x:数値`で，x座標を変更する．`y:数値`でy座標を変更する．`time:数値`で変更前の座標から変更後の座標へ移動にかける時間を変更する．指定していない場合は0秒なので，瞬間的な移動を行う．
 #### step
 ### 見た目
 ### 音
