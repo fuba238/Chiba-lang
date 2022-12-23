@@ -24,9 +24,11 @@
 - [関数](#関数)
 - [Scratchとの機能比較](#Scratchとの機能比較)
   - [動き](#動き)
-    - [walk](#walk)
-    - [move](#move)
-    - [step](#step)
+    - [walkメソッド](#walkメソッド)
+    - [moveメソッド](#moveメソッド)
+    - [stepメソッド](#stepメソッド)
+    - [xメソッド](#xメソッド)
+    - [yメソッド](#yメソッド)
   - [](#)
 - [](#)
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -201,7 +203,7 @@ true or false;
 
 ### 動き
 Scratchにおける「動き」に関連するブロックとの類似機能について記述する．
-#### walk
+#### walkメソッド
 ![walk](images/walk.png)
 ```
 Splite.new -> cat;
@@ -209,7 +211,7 @@ cat.walk 10;
 ```
 `スプライト名.walk`でスプライトの向いてる方向へ，指定した数値の距離を移動する．
 
-#### move
+#### moveメソッド
 ![move_x_y](images/move_x_y.png)<br>
 ![move_x_y_time](images/move_x_y_time.png)<br>
 ![move_x](images/move_x.png)<br>
@@ -223,7 +225,7 @@ cat.move y:10;
 ```
 `スプライト名.move`でスプライトの座標を指定する移動を行う．オプショナルパラメータにより，変更する要素を指定する．`x:数値`で，x座標を変更する．`y:数値`でy座標を変更する．`time:数値`で変更前の座標から変更後の座標へ移動にかける時間を変更する．指定していない場合は0秒なので，瞬間的な移動を行う．
 
-#### step
+#### stepメソッド
 ![step_x](images/step_x.png)<br>
 ![step_y](images/step_y.png)
 ```
@@ -233,7 +235,7 @@ cat.step y:-10;
 ```
 `スプライト名.step`でスプライトの元座標に対して指定した数値分の変更を行う．オプショナルパラメータにより，変更する要素を指定する．`x:数値`でx座標に対する変化量を与える．`y;数値`でy座標に対する変化量を与える．`x:10`や`y:-10`のように正負の値どちらも指定することができる．
 
-#### turn
+#### turnメソッド
 ![turn_right](images/turn_right.png)
 ![turn left](images/turn_left.png)
 ![turn](images/turn.png)
@@ -244,7 +246,7 @@ cat.turn -180;
 ```
 `スプライト名.turn`でスプライトの向きの変更を行う．向きは0度から360度まであり，0度と360度が上向き，90度が右向き，180度が下向き，240度が左向きを表す．`90`や`-180`のように正負の値どちらも指定することができる．
 
-#### x
+#### xメソッド
 ![x](images/x.png)
 ```
 Splite.new x:10, y:-10 -> cat;
@@ -252,7 +254,7 @@ cat.x -> num_x; //10
 ```
 `スプライト名.x`でスプライトの所持しているx座標の値を表示する．
 
-#### y
+#### yメソッド
 ![y](images/y.png)
 ```
 Splite.new x:10, y:10 -> cat;
