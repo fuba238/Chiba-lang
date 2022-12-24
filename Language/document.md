@@ -277,8 +277,8 @@ Scratchにおける「見た目」に関連するブロックとの類似機能�
 ![think_time](images/think_time.png)
 ```
 Splite.new -> cat;
-cat.line word:"こんにちは！",shape:"say";
-cat.line word:"うーん．．．",shape:"think";
+cat.line word:"こんにちは！",shape:"言う";
+cat.line word:"うーん．．．",shape:"考える";
 //表示時間指定
 cat.line word:"こんにちは!";
 { 3.second }.wait; //3秒待つ
@@ -287,9 +287,27 @@ cat.line word:"";
 `スプライト名.line`でスプライトの上部に吹き出しを表示する．台詞の内容の指定と吹き出しの形状を選択することができる．Scratchにおける「〜と言う」と「〜と考える」ブロックを統合した形になる．また，原則lineメソッドは実行してから上書きしない場合，吹き出しが表示し続ける．そのため，経過時間で吹き出しを消去したい場合は，`スプライト名.line word:"";`のように文字列を入力しないことで消去する．~~sayメソッド~~
 
 #### wearメソッド
-![wear]()
+![wear](images/wear.png)<br>
+![wear_next](images/next_wear.png)
+```
+Splite.new -> cat;
+cat.wear "コスチューム1";
+cat.wear_next;
+cat.wear_back;
+```
+`スプライト名.wear`でスプライトのコスチューム変更を行う．また，`スプライト名.wear_next`で次のコスチュームに変更を，`スプライト名.wear_back`で前のコスチュームに変更する．コスチュームはそれぞれ，番号と名前を持っており，wearメソッドではどちらでも指定することができる．
 
 #### setメソッド
+![set](images/set.png)<br>
+![set_next](images/next_set.png)
+```
+Stage.new -> stage;
+stage.set "背景1";
+stage.set_next;
+stage.set_back;
+```
+
+`ステージ名.set`でステージの背景の変更を行う．また，`ステージ名.set_next`で次の背景に変更を，`ステージ名.set_back`で前の背景に変更する．背景はそれぞれ，番号と名前を持っており，setメソッドではどちらでも指定することができる．
 
 ### 音
 ### イベント
