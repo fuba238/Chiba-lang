@@ -31,6 +31,9 @@
     - [xメソッド](#xメソッド)
     - [yメソッド](#yメソッド)
   - [見た目](#見た目)
+    - [lineメソッド](#lineメソッド) 
+    - [wearメソッド](#wearメソッド)
+    - [setメソッド](#setメソッド)
 - [](#)
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -268,7 +271,25 @@ cat.y -> num_y; //-10
 Scratchにおける「見た目」に関連するブロックとの類似機能について記述する．
 
 #### lineメソッド
+![say](images/say.png)<br>
+![say_time](images/say_time.png)<br>
+![think](images/think.png)<br>
+![think_time](images/think_time.png)
+```
+Splite.new -> cat;
+cat.line word:"こんにちは！",shape:"say";
+cat.line word:"うーん．．．",shape:"think";
+//表示時間指定
+cat.line word:"こんにちは!";
+{ 3.second }.wait; //3秒待つ
+cat.line word:"";
+```
+`スプライト名.line`でスプライトの上部に吹き出しを表示する．台詞の内容の指定と吹き出しの形状を選択することができる．Scratchにおける「〜と言う」と「〜と考える」ブロックを統合した形になる．また，原則lineメソッドは実行してから上書きしない場合，吹き出しが表示し続ける．そのため，経過時間で吹き出しを消去したい場合は，`スプライト名.line word:"";`のように文字列を入力しないことで消去する．~~sayメソッド~~
 
+#### wearメソッド
+![wear]()
+
+#### setメソッド
 
 ### 音
 ### イベント
