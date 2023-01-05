@@ -32,7 +32,7 @@
     - [yメソッド](#yメソッド)
   - [見た目](#見た目)
     - [sayメソッド](#sayメソッド) 
-    - [wearメソッド](#wearメソッド)
+    - [costumeメソッド](#costumeメソッド)
     - [setメソッド](#setメソッド)
 - [](#)
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -302,26 +302,26 @@ cat.say "";
 ```
 `スプライト名.say`でスプライトの上部に吹き出しを表示する．台詞の内容の指定することができる．Scratchにおける「〜と言う」と「〜と考える」ブロックにあたる．また，原則sayメソッドは実行してから上書きしない場合，吹き出しが表示し続ける．そのため，経過時間で吹き出しを消去したい場合は，`スプライト名.say "";`のように文字列を入力しないことで消去する．
 
-#### wearメソッド/wear_nextメソッド
-![wear](images/wear.png)<br>
-![wear_next](images/next_wear.png)
+#### costumeメソッド/next_costumeメソッド
+![costume](images/wear.png)<br>
+![next_costume](images/next_wear.png)
 ```
 Splite.new -> cat;
-cat.wear "コスチューム1";
-cat.wear_next;
+cat.costume "コスチューム1";
+cat.next_costume;
 ```
-`スプライト名.wear`でスプライトのコスチューム変更を行う．また，`スプライト名.wear_next`で次のコスチュームに変更する．コスチュームはそれぞれ，番号と名前を持っており，wearメソッドではどちらでも指定することができる．
+`スプライト名.costume`でスプライトのコスチューム変更を行う．また，`スプライト名.next_costume`で次のコスチュームに変更する．コスチュームはそれぞれ，番号と名前を持っており，wearメソッドではどちらでも指定することができる．
 
-#### setメソッド/set_nextメソッド
-![set](images/set.png)<br>
-![set_next](images/next_set.png)
+#### backgroundメソッド/next_backgroundメソッド
+![background](images/set.png)<br>
+![next_background](images/next_set.png)
 ```
 Stage.new -> stage;
-stage.set "背景1";
-stage.set_next;
+stage.background "背景1";
+stage.next_background;
 ```
 
-`ステージ名.set`でステージの背景の変更を行う．また，`ステージ名.set_next`で次の背景に変更する．背景はそれぞれ，番号と名前を持っており，setメソッドではどちらでも指定することができる．
+`ステージ名.background`でステージの背景の変更を行う．また，`ステージ名.next_background`で次の背景に変更する．背景はそれぞれ，番号と名前を持っており，setメソッドではどちらでも指定することができる．
 
 #### sizeメソッド
 ![size](images/size.png)
