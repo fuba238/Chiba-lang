@@ -33,7 +33,7 @@
   - [見た目](#見た目)
     - [sayメソッド](#sayメソッド) 
     - [costumeメソッド](#costumeメソッド)
-    - [setメソッド](#setメソッド)
+    - [backgroundメソッド](#backgroundメソッド)
 - [](#)
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -302,7 +302,7 @@ cat.say "";
 ```
 `スプライト名.say`でスプライトの上部に吹き出しを表示する．台詞の内容の指定することができる．Scratchにおける「〜と言う」と「〜と考える」ブロックにあたる．また，原則sayメソッドは実行してから上書きしない場合，吹き出しが表示し続ける．そのため，経過時間で吹き出しを消去したい場合は，`スプライト名.say "";`のように文字列を入力しないことで消去する．
 
-#### costumeメソッド/next_costumeメソッド
+#### costumeメソッド
 ![costume](images/wear.png)<br>
 ![next_costume](images/next_wear.png)
 ```
@@ -312,7 +312,7 @@ cat.next_costume;
 ```
 `スプライト名.costume`でスプライトのコスチューム変更を行う．また，`スプライト名.next_costume`で次のコスチュームに変更する．コスチュームはそれぞれ，番号と名前を持っており，wearメソッドではどちらでも指定することができる．
 
-#### backgroundメソッド/next_backgroundメソッド
+#### backgroundメソッド
 ![background](images/set.png)<br>
 ![next_background](images/next_set.png)
 ```
