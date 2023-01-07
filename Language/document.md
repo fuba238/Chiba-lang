@@ -28,6 +28,7 @@
     - [moveメソッド](#moveメソッド)
     - [stepメソッド](#stepメソッド)
     - [turnメソッド](#turnメソッド)
+    - [returnメソッド](#returnメソッド)
     - [xメソッド](#xメソッド)
     - [yメソッド](#yメソッド)
   - [見た目](#見た目)
@@ -35,8 +36,17 @@
     - [costumeメソッド](#costumeメソッド)
     - [backgroundメソッド](#backgroundメソッド)
     - [sizeメソッド](#sizeメソッド)
-  - [イベント](#イベント)
+  - [イベント](#イベント) 
     - [thenメソッド](#thenメソッド)
+    - [sendメソッド](#sendメソッド)
+  - [制御](#制御)
+    - [waitメソッド](#waitメソッド)
+    - [eachメソッド](#eachメソッド)
+    - [whileメソッド](#whileメソッド)
+    - [ifメソッド](#ifメソッド)
+    - [cloneメソッド](#cloneメソッド)
+  - [調べる](#調べる)
+  - [演算](#演算)
 - [](#)
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -251,15 +261,15 @@ cat.move y:10;
 ```
 `スプライト名.move`でスプライトの座標を指定する移動を行う．オプショナルパラメータにより，変更する要素を指定する．`x:数値`で，x座標を変更する．`y:数値`でy座標を変更する．`time:数値`で変更前の座標から変更後の座標へ移動にかける時間を変更する．指定していない場合は0秒なので，瞬間的な移動を行う．
 
-#### move_stepメソッド
+#### stepメソッド
 ![step_x](images/step_x.png)<br>
 ![step_y](images/step_y.png)
 ```
 Splite.new -> cat;
-cat.move_step x:10;
-cat.move_step y:-10;
+cat.step x:10;
+cat.step y:-10;
 ```
-`スプライト名.move_step`でスプライトの元座標に対して指定した数値分の変更を行う．オプショナルパラメータにより，変更する要素を指定する．`x:数値`でx座標に対する変化量を与える．`y;数値`でy座標に対する変化量を与える．`x:10`や`y:-10`のように正負の値どちらも指定することができる．
+`スプライト名.step`でスプライトの元座標に対して指定した数値分の変更を行う．オプショナルパラメータにより，変更する要素を指定する．`x:数値`でx座標に対する変化量を与える．`y;数値`でy座標に対する変化量を与える．`x:10`や`y:-10`のように正負の値どちらも指定することができる．
 
 #### turnメソッド
 ![turn_right](images/turn_right.png)<br>
@@ -271,6 +281,19 @@ cat.turn 90;
 cat.turn -180;
 ```
 `スプライト名.turn`でスプライトの向きの変更を行う．向きは0度から360度まであり，0度と360度が上向き，90度が右向き，180度が下向き，240度が左向きを表す．`90`や`-180`のように正負の値どちらも指定することができる．
+
+#### returnメソッド
+![return](images/return.png)
+```
+Stage.new -> stage;
+Splite.new -> cat;
+Know.new -> kn;
+{ kn.touch stage,cat }.if {
+  cat.return;
+}
+```
+
+`スプライト名.return`でスプライトの向きを180度変更する
 
 #### xメソッド
 ![x](images/x.png)
