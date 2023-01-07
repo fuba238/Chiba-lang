@@ -34,6 +34,9 @@
     - [sayメソッド](#sayメソッド) 
     - [costumeメソッド](#costumeメソッド)
     - [backgroundメソッド](#backgroundメソッド)
+    - [sizeメソッド](#sizeメソッド)
+  - [イベント](#イベント)
+    - [thenメソッド](#thenメソッド)
 - [](#)
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -206,21 +209,22 @@ true or false;
 本言語は，Scratchの機能をベースに設計を行なっている．そのため，Scratchとの類似する機能が多々ある．しかし，現時点では，Scratchの機能を全て再現することは考えておらず，必要最低限の機能の実装を想定している．
 
 ### スプライトやステージ
-![splite_and_stage](images/splite_and_stage)
+![splite_and_stage](images/splite_and_stage.png)
 ```
 Splite.new -> cat;
 Stage.new -> stage;
 ```
 Scratchにおいて，スプライトとステージはデフォルトで配置されている．しかし，本言語では，スプライトとステージの生成が必要となる．`Splite.new`でスプライトの生成，`Stage.new`でステージの生成を行う．スプライトは複数生成することができるが，ステージは複数生成することはできない．スプライトとステージはそれぞれ，以下のオプショナルパラメータを指定することができる．
 
+|スプライト|
 |オプショナルパラメータ|内容|
 |:----------------:|:---:|
-|||
-|||
-|||
-|||
-|||
-|||
+|name|名前|
+|x|x座標|
+|y|y座標|
+|size|大きさ|
+|deg|角度|
+|show|表示|
 
 ### 動き
 Scratchにおける「動き」に関連するブロックとの類似機能について記述する．
@@ -330,9 +334,8 @@ Splite.new -> cat;
 cat.size 150;
 ```
 
-`スプライト名.size`で
+`スプライト名.size`でスプライトの大きさの変更を行う．初期値は100．
 
-### 音
 ### イベント
 ### 制御
 ### 調べる
