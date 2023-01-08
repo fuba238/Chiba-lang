@@ -4,47 +4,36 @@ https://scratch.mit.edu/projects/244894684/editor/
 Event.new -> ev; 
 
 //スプライトの作成
-numbers.new -> number;
-rices.new -> rice;
+Splite.new -> number;
+Splite.new -> rice;
 
 //ステージ
+Stage.new -> stage;
 
-//旗が押されたとき
-ev.click (obj) => {
-  obj = "flag".if { ev.send "リセット"; }
-}
-/*
-ev.clicked "flag",() => {  }
-*/
-
-//キーが押されたとき
-ev.receive "keypress", (key) => {
-  key.match
-    "space".case { 
-      ev.send "次のフレーム"; 
-      1 |> wait;
-    }
-    "rightarrow".case { ev.send "次のフレーム"}
-    "leftarrow".case { ev.send "前のフレーム" }
+{ ev = "flag" }.then {
+  "リセット" |> ev;
 }
 
-//数字
-
-//メッセージを受け取ったとき
-ev.receive "message",(msg) => {
-  //パターンマッチ
-  msg.match
-    "リセット".case { number.costume 1; } //コスチュームの名前と番号は統一
-    "次のフレーム".case { number.next_costume; }
-    "前のフレーム".case { number.back_costume; }
+{ ev = "space" }.then {
+  "次のフレーム" |> ev;
+  {1.seconds}.wait;
+}
+{ ev = "rihtarrow" }.then {
+  "次のフレーム" |> ev;
 }
 
-//米
-
-ev.receive "message",(msg) => {
-  //パターンマッチ
-  msg.match
-    "リセット".case { rice.costume 1 }
-    "次のフレーム".case { rice.next_costume }
-    "前のフレーム".case { rice.back_costume }
+{ ev = "leftarrow" }.then {
+  "前のフレーム" |> ev;
+}
+{ ev = "リセット" }.then {
+  number.costume 1;
+  rice.costume 1;
+}
+{ ev = "次のフレーム" }.then {
+  number.next_costume;
+  rice.next_costume;
+}
+{ ev = "前のフレーム" }.then {
+  number.back_costume;
+  rice.back_costume;
 }
