@@ -20,3 +20,101 @@ Program プログラム全体を指す
           TrueToken trueトークン
           Operator オペレーター
             RelationOperator <= = >= 関係演算子
+
+Program = compstmt = stmt*
+  stmt = _ expr _ 
+    expr = right "->" left ";"
+         / right "|>" left ";"
+         / method
+method = _ Object"."CallMethod _ OptionalParameter _
+1. Object
+  1.1. Class = [A-Z][a-z]* 先頭が大文字の文字列がクラスを表す
+  1.2. block = "{" _ ExpressionStatement _ "}" {}に囲まれた式文
+  1.3. Literal
+2. CallMethod = [a-zA-Z_]* メソッド名
+3. OptionalParameter
+  3.1. block
+  3.2. Parameters = Parameter+ 一回以上の繰り返し
+    3.2.1. Parameter = _ word _ ":" _ Literal _ "," _ / _ word _ ":" _ Literal _ ";" _
+start 
+	= program
+
+program
+	= Object period CallMethod Parameters
+
+Object 
+	= Class
+    / Literal
+	/ BlockStatement
+    
+CallMethod
+	= word
+    
+Parameters
+	= BlockStatement
+	/ Parameter+
+    
+BlockStatement
+	= "{" _ "}"
+Parameter
+	= _ word  colon  Literal _ comma _
+    /  _ word  colon  Literal _ end _
+    / _ end _
+    
+Class
+	= [A-Z][a-zA-Z0-9_]*
+    
+Literal
+	= NumberLiteral
+    / StringLiteral
+    / BooleanLiteral
+
+NumberLiteral
+	= Integer
+    / Float
+    
+Float
+	= Integer frac digit
+    
+Integer
+	= signe? digit19 digits
+    / signe digit
+    / digit
+
+digit19 = [1-9]
+digit = [0-9]
+digits = digit+
+signe
+  = "+"
+  / "-"
+frac 
+	= period
+    
+word
+	= word:[a-zA-z][0-9a-zA-Z]*
+    
+StringLiteral
+	= '"' word '"'
+    
+BooleanLiteral
+	= truetoken
+    / falsetoken
+
+truetoken = "true"
+
+falsetoken = "false"
+
+comma
+	= [,]
+
+period
+	= [.]
+
+colon
+	= [:]
+    
+end
+	= [;]
+    
+_ "whitespace"
+	= [ \t\n\r]*
