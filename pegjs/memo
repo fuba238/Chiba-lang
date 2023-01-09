@@ -21,6 +21,11 @@ Program プログラム全体を指す
           Operator オペレーター
             RelationOperator <= = >= 関係演算子
 
+代入　
+関数
+パイプライン
+メソッド
+
 Program = compstmt = stmt*
   stmt = _ expr _ 
     expr = right "->" left ";"
