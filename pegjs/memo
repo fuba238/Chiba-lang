@@ -36,6 +36,7 @@ method = _ Object"."CallMethod _ OptionalParameter _
   3.1. block
   3.2. Parameters = Parameter+ 一回以上の繰り返し
     3.2.1. Parameter = _ word _ ":" _ Literal _ "," _ / _ word _ ":" _ Literal _ ";" _
+ーーーーーーーーーーーーメソッド呼び出しーーーーーーーーーーーー
 start 
 	= program
 
