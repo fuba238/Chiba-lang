@@ -35,12 +35,12 @@ a |> func; パラメータ |> 識別子
 cat.x |> func; メソッド |> 識別子
 cat.x |> cat.y; メソッド |> メソッド
 メソッド
-cat.x; 
-cat.walk 10;
-cat.move x:10,y:10;
-true.while {}
-{ a < 10 }.if {}
-{ 1~10 }.each (i)=>{}
+cat.x; 引数なしメソッド
+cat.walk 10; 引数ありメソッド
+cat.move x:10,y:10;　キーワード付き引数ありメソッド
+true.while {}　ブロック付きメソッド
+{ a < 10 }.if {}　
+{ 1~10 }.each (i)=>{}　関数付きメソッド
 Event.new name:"ねこ" 代入必須
 Program = compstmt = stmt*
   stmt = _ expr _ 
