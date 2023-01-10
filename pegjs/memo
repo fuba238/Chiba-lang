@@ -22,10 +22,26 @@ Program プログラム全体を指す
             RelationOperator <= = >= 関係演算子
 
 代入　
-関数
+1 -> a; リテラル -> 識別子
+() => {} -> func; 関数 -> 識別子
+cat.x -> num_x; メソッド -> 識別子
+Event.new name:"ねこ" -> cat; メソッド -> 識別子
+cat.move x:10, y:10 -> aaa; エラー
+a |> func -> ans; パイプライン式 -> 識別子
 パイプライン
+a |> func; パラメータ |> 識別子
+{a,b} |> func; パラメータs |> 識別子
+{x:a, y:b} |> func; パラメータs |> 識別子
+cat.x |> func; メソッド |> 識別子
+cat.x |> cat.y; メソッド |> メソッド
 メソッド
-
+cat.x; 
+cat.walk 10;
+cat.move x:10,y:10;
+true.while {}
+{ a < 10 }.if {}
+{ 1~10 }.each (i)=>{}
+Event.new name:"ねこ" 代入必須
 Program = compstmt = stmt*
   stmt = _ expr _ 
     expr = right "->" left ";"
