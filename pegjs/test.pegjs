@@ -1,5 +1,5 @@
 {function sallow( left, right ) {
-	return {
+    return {
 		"type": "AssignmentExpression",
 		"operator": "=",
 		left,
@@ -36,20 +36,23 @@ Program "プログラム"
         }
     }
 ProgramRules "プログラムルールの集まり"
-	= (ProgramRule)*
-    
+	= ProgramRule*
+
 ProgramRule "プログラムルール"
-	= _ BreakStatement end _ {
+	= _ Statements end _ 
+
+Statements "文の種類"
+	= _ BreakStatement _ {
     	return {
     		"type": "BreakStatement"
         }
     }
-    / _ ReturnStatement end _ {
+    / _ ReturnStatement _ {
     	return {
         	"type": "ReturnStatement"
         }
     }
-    / _ ExpressionStatement:Expr end _ {
+    / _ ExpressionStatement:Expr _ {
     	return {
         	"type": "ExpressionStatement",
             ExpressionStatement
@@ -60,14 +63,36 @@ Expr "代入式"
 	= right:Pipe _ AssignmentToken _ left:AssignmentFactor {
     	return sallow( left, right );
     }
+    / Pipe 
 
 AssignmentFactor "代入先"
 	= ArrayElement
     / Iden
 
 Pipe "パイプライン式"
-	= Iden
+	= left:PipelineParameter _ PipelineToken _ right:PipeItem {
+    	return {
+        	"type": "PipelineExpression",
+            "operator": "|>",
+            "left": left,
+            "right": right
+        }
+    }
 
+PipelineParameter "パイプライン引数"
+	= Parameter
+    / Parameters
+    
+Parameter "単数引数"
+	= Iden
+    / NumericLiteral
+
+Parameters "複数引数"
+	= "{" _ Parameter (_ Comma _ Parameter)* _ "}"
+
+PipeItem "パイプ先"
+	= Iden
+    
 Iden "識別子"
 	= IdenToken: $(IdenToken) {
     	return { "type": "Identifier", "name": IdenToken }
@@ -148,6 +173,9 @@ Signe "符号"
     
 Period "ピリオド"
 	= "."
+
+Comma "カンマ"
+	= ","
 
 end "文の終端"
 	= ";"
