@@ -1,5 +1,5 @@
 {function sallow( left, right ) {
-    return {
+	return {
 		"type": "AssignmentExpression",
 		"operator": "=",
 		left,
@@ -39,9 +39,9 @@ ProgramRules "プログラムルールの集まり"
 	= ProgramRule*
 
 ProgramRule "プログラムルール"
-	= _ Statements end _ 
+	= _ Statements:Stmt end _ { return Statements }
 
-Statements "文の種類"
+Stmt "文の種類"
 	= _ BreakStatement _ {
     	return {
     		"type": "BreakStatement"
@@ -61,44 +61,81 @@ Statements "文の種類"
     
 Expr "代入式"
 	= right:Pipe _ AssignmentToken _ left:AssignmentFactor {
-    	return sallow( left, right );
+    	return sallow(left, right);
     }
-    / Pipe 
+    / Pipe
 
 AssignmentFactor "代入先"
 	= ArrayElement
     / Iden
 
 Pipe "パイプライン式"
-	= left:PipelineParameter _ PipelineToken _ right:PipeItem {
-    	return {
-        	"type": "PipelineExpression",
-            "operator": "|>",
-            "left": left,
-            "right": right
-        }
+	= left:PipeFrom right:(_ "|>" _ PipeFrom)* {
+    	return buildPipelineExpression(left,right);
     }
 
+PipeFrom "パイプライン送信元"
+	= LogicalExpression 
+    / Factor:$(PipelineParameter) {
+    	return {
+        	"type":"Parameter",
+            Factor
+        }
+    }
+    
+LogicalExpression "論理式"
+	= left:RelationExpression right:(_ LogicalToken _ RelationExpression)* {
+    	return buildBinaryExpression(left, right);
+    }
+    
+RelationExpression "関係式"
+	= left:Expression1 right:(_ RelationToken _ Expression1)* {
+    	return buildBinaryExpression(left, right);
+    }
+    
+Expression1 "加減式"
+	= left:Expression2 right:(_ [+-] _ Expression2 )* {
+    	return buildBinaryExpression(left,right);
+    }
+    
+Expression2 "乗除式"
+	= left:Factor right:(_ [*/] _ Factor )* {
+    	return buildBinaryExpression(left,right);
+    }
+
+Factor "要素"
+	= "(" _ expr:RelationExpression _ ")" { return expr; }
+    / NumericLiteral
+    / Iden
+    
 PipelineParameter "パイプライン引数"
-	= Parameter
-    / Parameters
+	= "{" _ Parameters _ "}"
+    / Parameter
     
 Parameter "単数引数"
+	= Keyword
+	/ Iden
+    / NumericLiteral
+
+Keyword "キーワード引数"
+	= Key Colon Para
+    
+Key "キーワード"
+	= Iden
+    
+Para "引数"
 	= Iden
     / NumericLiteral
 
 Parameters "複数引数"
-	= "{" _ Parameter (_ Comma _ Parameter)* _ "}"
-
-PipeItem "パイプ先"
-	= Iden
+	= Parameter (_ Comma _ Parameter)* 
     
 Iden "識別子"
 	= IdenToken: $(IdenToken) {
     	return { "type": "Identifier", "name": IdenToken }
     }
 
-ArrayElement
+ArrayElement "配列要素"
 	= Identifier: Iden "[" ArrayIndex: ArrayIndex "]" {
     	return {
         	Identifier,
@@ -106,7 +143,7 @@ ArrayElement
         }
     }
     
-ArrayIndex
+ArrayIndex "配列中身"
     = IntegerLiteral
     / ArrayElement
     / Iden
@@ -123,6 +160,18 @@ AssignmentToken "代入演算子"
 PipelineToken "パイプライン演算子"
 	= "|>"
     
+LogicalToken "論理演算子"
+	= "and"
+    / "or"
+
+RelationToken "比較演算子とチルダ演算子"
+	= "="
+    / "<"
+    / ">"
+    / "<="
+    / ">="
+    / "~"
+
 BreakToken "breakトークン"
 	= "break"   
     
@@ -136,20 +185,30 @@ ClassToken "クラストークン"
 	= [A-Z][0-9a-zA-Z]*
 
 
-NumericLiteral
+NumericLiteral "数値リテラル"
 	= FloatLiteral
 	/ IntegerLiteral
+    / StringLiteral
   
-IntegerLiteral
+IntegerLiteral "整数リテラル"
 	= int:$(Integer) {
        		return { "type": "Literal", value: parseInt(int), class: "Number" }
        }
 
-FloatLiteral
+FloatLiteral "浮動小数点数リテラル"
 	= float:$(Float) {
         	return { "type": "Literal", value: parseFloat(float), class: "Number" }
        }
 
+StringLiteral "文字列リテラル"
+  = '"' chars:DoubleQuoteCharacter* '"' {
+    return { type: "Literal", value: chars.join(""), class: "String" };
+  }
+
+DoubleQuoteCharacter
+  = !'"' SourceCharacter { return text(); }
+  
+SourceCharacter = .
 
 Integer "整数"
 	= Signe? Digit19 Digits
@@ -171,6 +230,8 @@ Signe "符号"
 	= "+"
     / "-"
     
+Colon "コロン"
+	= ":"
 Period "ピリオド"
 	= "."
 
