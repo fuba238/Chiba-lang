@@ -1,11 +1,10 @@
 https://scratch.mit.edu/projects/24113321/editor/
 
-Event.new -> ev;
-//スプライトにおける「調べる」
-Know.new -> kn;
+MessageEvent.new -> mes;
+ClickEvent.new -> click;
 
-animals.new -> cat;
-fluits.new -> apple;
+Splite.new -> cat;
+Splite.new -> apple;
 
 //ネコ
 
@@ -20,7 +19,13 @@ ev.receive "message",(msg) => {
     cat.sound meow;
   }
 }
+{click="flag"}.if {
+  cat.say "りんごをクリックしよう";
+}
 
+{mes="message1"}.if{
+  cat.say"ありがとう";
+}
 //りんご
 
 ev.click "flag",() => {
