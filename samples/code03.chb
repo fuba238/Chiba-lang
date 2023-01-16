@@ -7,8 +7,9 @@ Splite.new -> cat;
 Splite.new -> apple;
 
 //ネコ
-"click".match {
-  ""cat.say "りんごをクリックしよう";
+click.match {
+  ""
+  cat.say "りんごをクリックしよう";
   apple.show true;
   100 |> apple.y;
 }
