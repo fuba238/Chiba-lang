@@ -7,27 +7,17 @@ Splite.new -> cat;
 Splite.new -> apple;
 
 //ネコ
-
-ev.click "flag",() => {
-  cat.say "りんごをクリックしよう";
-}
-
-ev.receive "message",(msg) => {
-  msg = "message1".if {
-    cat.say "ありがとう";
-    //音関連はまだあまり考えられていない
-    cat.sound meow;
-  }
-}
-{click="flag"}.if {
-  cat.say "りんごをクリックしよう";
+"click".match {
+  ""cat.say "りんごをクリックしよう";
+  apple.show true;
+  100 |> apple.y;
 }
 
 {mes="message1"}.if{
-  cat.say"ありがとう";
+  cat.say "ありがとう";
+  cat.sound "1";
 }
 //りんご
-
 ev.click "flag",() => {
   apple.show;
   100 -> apple.y;
