@@ -1,0 +1,26 @@
+https://scratch.mit.edu/projects/111000045/editor/
+跳ね返るボール
+
+ClickEvent.new -> click;
+KeyEvent.new -> key;
+Stage.new -> stage;
+Splite.new name:"ボール" -> ball;
+Splite.new name:"パドル",y:-117 -> paddle;
+
+{ click="flag" }.if {
+  ball.turn 45;
+  true.while {
+    ball.walk 10;
+    { ball.touch paddle }.if {
+      180 - ball.degree -> ball_deg;
+      ball.turn ball_deg;
+    };
+    ball.return;
+    { key="rightarrow" }.if {
+      paddle.move_step x:20;
+    };
+    { key="leftarrow" }.if {
+      paddle.move_step x:-20;
+    };
+  };
+};
