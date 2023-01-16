@@ -1,11 +1,10 @@
 https://scratch.mit.edu/projects/110343823/editor/
 
-Event.new -> ev;
-animal.new -> cat;
+ClickEvent.new -> click;
+Splite.new -> cat;
 
-ev.click "flag",() => {
-    //乱数生成
-    -240~240 |> random -> x_position;
-    -180~180 |> random -> y_position;    
+{ click="flag" }.if {
+    Random.new from:-240,to:240 -> x_position;
+    Random.new from:-180,to:180 -> y_position;
     cat.move x:x_position, y:y_position;
-}
+};
