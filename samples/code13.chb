@@ -1,0 +1,39 @@
+https://scratch.mit.edu/projects/568734887/editor/
+弾を発射する
+
+
+CliclEvent.new -> click;
+KeyEvent.new -> key;
+MessageEvent.new -> mes;
+
+Splite.new name:"ねこ", x:-177, y:-2 -> cat;
+Splite.new name:"ボール", show:false -> ball;
+
+{ key="uppararrow" }.if {
+  cat.move_step y:10;
+};
+
+{ key="bottomarrow" }.if {
+  cat.move_step y:-10;
+};
+
+{ key="space" }.if {
+  "弾を発射する" |> mes;
+};
+
+{ mes="弾を発射する" }.if {
+  cat.x |> ball.x;
+  cat.y |> ball.y;
+  ball.show true;
+  true.while {
+    ball.walk 10;
+    { ball.x > 230 }.if {
+      ball.show false;
+    };
+  };
+};
+
+{ click="flag" }.if {
+  ball.show false;
+};
+
