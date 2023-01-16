@@ -71,8 +71,7 @@ AssignmentFactor "代入先"
     / Iden
 
 Pipe "パイプライン式"
-	= Function
-	/ left:PipeFrom right:(_ "|>" _ PipeItem)* {
+	= left:PipeFrom right:(_ "|>" _ PipeItem)* {
     	return buildPipelineExpression(left,right);
     }
 
@@ -108,13 +107,14 @@ Method "メソッド"
     
 Object "オブジェクト"
 	= Block
+    / Literal
 	/ Class
     / Iden
 
-FunctionBlock
-	= "{" _ ProgramRule:ProgramRule _ "}" {
+FunctionBlock "関数処理"
+	= "{" _ ProgramRules:ProgramRules _ "}" {
     	return {
-        	ProgramRule
+        	ProgramRules
         }
     }
 
@@ -135,6 +135,7 @@ CallMethod "メソッド呼び出し"
 
 OptionalParameter "オプション引数"
 	= Function
+    / "{" _ ProgramRule _"}"
 	/ "{" _ Parameters _ "}"
     / Parameter
 
@@ -159,18 +160,19 @@ Expression2 "乗除式"
     }
 
 Factor "要素"
-	= "(" _ expr:RelationExpression _ ")" { return expr; }
+	= Function
+	/ "(" _ expr:RelationExpression _ ")" { return expr; }
     / Method
     / ArrayElement
     / NumericLiteral
     / Iden
     
 PipelineParameter "パイプライン引数"
-	= "{" _ Parameters _ "}"
+    = "{" _ Parameters _ "}"
     / Parameter
     
 Parameter "単数引数"
-	= Keyword
+	=  Keyword
 	/ Iden
     / NumericLiteral
 
@@ -185,7 +187,7 @@ Para "引数"
     / NumericLiteral
 
 Parameters "複数引数"
-	= Parameter (_ Comma _ Parameter)* 
+	=  Parameter (_ Comma _ Parameter)* 
     
 Iden "識別子"
 	= IdenToken: $(IdenToken) {
@@ -199,7 +201,11 @@ ArrayElement "配列要素"
             ArrayIndex
         }
     }
-    
+
+Literal "リテラル"
+	= StringLiteral
+    / NumericLiteral
+
 ArrayIndex "配列中身"
     = IntegerLiteral
     / ArrayElement
