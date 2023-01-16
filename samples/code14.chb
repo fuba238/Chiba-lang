@@ -1,0 +1,11 @@
+https://scratch.mit.edu/projects/698302333/editor/
+ジャンプする
+
+ClickEvent.new -> click;
+Splite.new name:"ねこ" -> cat;
+
+15 -> distance;
+{ distance > -16 }.while {
+  cat.move_step y:distance;
+  distance - 1 -> distance;
+};
