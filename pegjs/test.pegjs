@@ -47,9 +47,10 @@ Stmt "文の種類"
     		"type": "BreakStatement"
         }
     }
-    / _ ReturnStatement _ {
+    / _ ReturnStatement:ReturnStatement _ {
     	return {
-        	"type": "ReturnStatement"
+        	"type": "ReturnStatement",
+            ReturnStatement
         }
     }
     / _ ExpressionStatement:Expr _ {
@@ -70,8 +71,17 @@ AssignmentFactor "代入先"
     / Iden
 
 Pipe "パイプライン式"
-	= left:PipeFrom right:(_ "|>" _ PipeFrom)* {
+	= Function
+	/ left:PipeFrom right:(_ "|>" _ PipeItem)* {
     	return buildPipelineExpression(left,right);
+    }
+
+Function "関数"
+	= "(" _ Parameters:Parameters? _ ")" _ "=>" _ FunctionBlock:FunctionBlock {
+    	return {
+        	Parameters,
+            FunctionBlock
+        }
     }
 
 PipeFrom "パイプライン送信元"
@@ -83,6 +93,51 @@ PipeFrom "パイプライン送信元"
         }
     }
     
+PipeItem "パイプライン先"
+	= Method
+	/ Iden
+    
+Method "メソッド"
+	= Object:Object "." CallMethod:CallMethod _ OptionalParameter:OptionalParameter? {
+    	return {
+        	Object,
+            CallMethod,
+            OptionalParameter
+        }
+    }
+    
+Object "オブジェクト"
+	= Block
+	/ Class
+    / Iden
+
+FunctionBlock
+	= "{" _ ProgramRule:ProgramRule _ "}" {
+    	return {
+        	ProgramRule
+        }
+    }
+
+Block "ブロック"
+	= "{" _ Expr:Expr _ "}" {
+    	return {
+        	Expr
+        }
+    }
+    
+Class "クラス"
+	= ClassToken: $(ClassToken) {
+    	return { "type": "Class", "name": ClassToken }
+    }
+
+CallMethod "メソッド呼び出し"
+	= Iden
+
+OptionalParameter "オプション引数"
+	= Function
+	/ "{" _ Parameters _ "}"
+    / Parameter
+
 LogicalExpression "論理式"
 	= left:RelationExpression right:(_ LogicalToken _ RelationExpression)* {
     	return buildBinaryExpression(left, right);
@@ -105,6 +160,8 @@ Expression2 "乗除式"
 
 Factor "要素"
 	= "(" _ expr:RelationExpression _ ")" { return expr; }
+    / Method
+    / ArrayElement
     / NumericLiteral
     / Iden
     
@@ -152,7 +209,11 @@ BreakStatement "break文"
 	= BreakToken
     
 ReturnStatement "return文"
-	= ReturnToken
+	= ReturnToken _ Back:Pipe {
+    	return {
+        	Back
+        }
+    }
     
 AssignmentToken "代入演算子"
 	= "->"
@@ -243,4 +304,3 @@ end "文の終端"
     
 _ "空白"
 	= [ \t\n\r]*
-
