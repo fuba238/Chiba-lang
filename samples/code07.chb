@@ -1,44 +1,45 @@
 https://scratch.mit.edu/projects/697309463/editor/
 
-Event.new -> ev;
+ClickEvent.new -> click;
+KeyEvent.new -> key;
 
-animals.new x: -216,y: -136,size: 50,turn: 90,hide -> cat;
-objects.new x: 1,y:-188,size: 100,turn: 90 -> hole;
+Splite.new name:"ねこ", x: -216,y: -136,size: 50,turn: 90 -> cat;
+Splite.new name:"しかく", x: 1,y:-188,size: 100,turn: 90 -> hole;
 
 //関数
 () => {
-  1~4.each {
+  { 1~4 }.each {
     cat.y - 10 -> cat.y;
-  }
-  cat.hide;
+  };
+  cat.show false;
 } -> fall;
 
-ev.click "flag",() => {
+{ click="flag" }.if {
   cat.move x:-216, y:-136;
   0 -> jump;
   //最前面へ移動
   cat.move_front;
-  cat.show
+  cat.show true;
   true.while {
-    kn.keypress = "rigtharrow".if {
-      cat.x + 5 -> cat.x;
-    }
-    kn.keypress = "leftarrow".if {
-      cat.x - 5 -> cat.x;
-    }
-    cat, hole |> kn.touch.if {
+    { key="rightarrow" }.if {
+      cat.x + 5 |> cat.x;
+    };
+    { key="leftarrow" }.if {
+      cat.x - 5 |> cat.x;
+    };
+    { hole |> cat.touch }.if {
       fall;
-    }
-    kn.keypress = "space" and jump = 0.if {
+    };
+    { key="space" and jump=0 }.if {
       1 -> jump;
       10 -> number;
-    }
-    jump = 1.if {
-      cat.y + number -> cat.y;
+    };
+    { jump=1 }.if {
+      cat.y + number |> cat.y;
       number - 1 -> number;
-      number < -10.if {
+      { number<-10 }.if {
         0 -> jump;
-      }
-    }
-  }
-}
+      };
+    };
+  };
+};
