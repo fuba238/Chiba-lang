@@ -1,7 +1,7 @@
 https://scratch.mit.edu/projects/110343823/editor/
 
 ClickEvent.new -> click;
-Splite.new -> cat;
+Splite.new name:"ねこ" -> cat;
 
 { click="flag" }.if {
     Random.new from:-240,to:240 -> x_position;
