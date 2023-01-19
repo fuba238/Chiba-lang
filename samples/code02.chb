@@ -1,49 +1,52 @@
 https://scratch.mit.edu/projects/244895240/editor/
 
-Event.new -> ev;
+MessageEvent.new -> mes;
+ClickEvent.new -> click;
 //ステージ生成する際の書き方が未定
 Stage.new -> stage;
 
-Sprite.new "ネコ" -> cat;
-Sprite.new "クマ" -> bear;
+Sprite.new name:"ネコ" -> cat;
+Sprite.new name:"クマ" -> bear;
 
+//コスチュームor背景の追加方法についての思案
+//とりあえずクラス内にいくつかのイラストがあるとした
 "へや" |> stage;
 "ゆき" |> stage;
 
 //ステージ
-{ ev = "green" }.then {
+{ click = "flag" }.if {
   //ステージの背景もスプライトのコスチュームと同様に番号で管理する 1:部屋 2:雪
   "へや" |> stage.background; 
   { 3.seconds }.wait;
-  "部屋の中の会話" |> ev;
-  { ev = "会話終了" }.wait;
+  "部屋の中の会話" |> mes;
+  { mes = "会話終了" }.wait;
   "ゆき" |> stage.background;
-  "ゆき" |> ev;
+  "ゆき" |> mes;
   //パイプラインとオプショナルパラメータは同義
-}
+};
 
 //ネコ
 
-{ ev = "部屋の中の会話" }.then {
+{ mes = "部屋の中の会話" }.if {
   //2秒間言う
   cat.say "つまらないね";
   { 2.seconds }.wait;
   cat.say "";
-  "つまらない" |> ev;
-}
+  "つまらない" |> mes;
+};
 
-{ ev = "ゆき" }.then {
+{ mes = "ゆき" }.if {
   cat.say "さむい!!";
-}
+};
 
 //熊
-{ ev = "つまらない" }.then {
+{ mes = "つまらない" }.if {
   bear.say "そとであそぼう!";
   { 2.seconds }.wait;
   bear.say "";
-  "会話終了" |> ev;
-}
+  "会話終了" |> mes;
+};
 
-{ ev = "ゆき" }.then {
+{ mes = "ゆき" }.if {
   bear.say "気持ちいい";
-}
+};
