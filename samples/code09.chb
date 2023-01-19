@@ -1,28 +1,13 @@
-https://scratch.mit.edu/projects/65221658/editor/
+一回転するプログラム
 
-Event.new -> ev;
-Know.new -> kn;
-splite.new size:100 -> main;
+ClickEvent.new -> click;
+Splite.new name:"ねこ" -> cat;
 
-ev.click "flag",() => {
-    true.while {
-        kn.keypress = "rightarrow".if{
-            main.walk 5;
-        } 
-    }
-}
-
-ev.click "flag",() => {
-    true.while {
-        kn.keypress = "rightarrow".if{
-            main.walk -5;
-        } 
-    }
-}
-
-ev.click "flag",() => {
-    true.while {
-        main.next_costume;
-        0.2 |> wait;
-    }
-}
+{ click="flag" }.if {
+    cat.turn 90;
+    126 -> degree;
+    { 1~10 }.each () => {
+        cat.turn degree;
+        degree + 36 -> degree;
+    };
+};
