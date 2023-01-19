@@ -1,20 +1,28 @@
 https://scratch.programming-edu.net/jugyoujirei/hensu.html
 
-Event.new -> ev;
-splite.new -> cat;
+ClickEvent.new -> click;
+Splite.new name:"ねこ" -> cat;
 
-0 -> number;
-cat.size 100;
 
-true.while {
-    number + 1 -> number;
-    number % 3 = 0.if {
-        cat.size * 2 -> cat.size;
-        cat.say number;
-        1 |> cat.wait;
-        cat.size / 2 -> cat.size;
-    } else {
-        number |> cat.say;
-        1 |> cat.wait;
-    }
-}
+{ click="flag" }.if {
+    number -> 0;
+    cat.size 100;
+    true.while {
+        number + 1 -> number;
+        { number % 3 = 0 }.if {
+            cat.size 200;
+            cat.say number;
+            {1.seconds}.wait;
+            cat.say "";
+            {1.seconds}.wait;
+            cat.size 100;
+        };
+        // and orはある notはまだ　
+        { number % 3 = not 0 }.if {
+            cat.say number;
+            {1.seconds}.wait;
+            cat.say "";
+            {1.seconds}.wait;
+        };
+    };
+};
