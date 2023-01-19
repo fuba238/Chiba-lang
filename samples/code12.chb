@@ -1,21 +1,23 @@
 https://scratch.mit.edu/projects/568725755/editor/
+ClickEvent.new -> click;
+Mouse.new -> mouse; マウスのクラス
 
-Event.new -> ev;
-Know.new -> kn;
-splite.new -> cat;
-splite.new -> apple;
+Splite.new name:"りんご" -> apple
+Splite.new name:"ねこ" -> cat;
 
-ev.click "flag",() => {
+() => {
+    Random.new from:-500 to:500 -> num_x;
+    Random.new from:-500 to:500 -> num_y;
+    apple.move x:num_x, y:num_y;
+} -> random_move;
+
+{ click="flag" }.if {
+    //ステージのサイズが1000x1000を想定
+    random_move;
     true.while {
-        cat.move_mouse;
-    }
-}
-
-ev.click "flag",() => {
-    apple.move_random;
-    true.while {
-        cat,apple |> kn.touching.if{
-            apple.move_random;
-        }
-    }
-}
+        cat.move x:mouse.x, y:mouse.y;
+        { apple |> cat.touch }.if {
+            random_move;
+        };
+    };
+};
