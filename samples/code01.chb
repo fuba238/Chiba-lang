@@ -2,7 +2,7 @@ https://scratch.mit.edu/projects/244894684/editor/
 
 //ClickEventクラスの宣言 
 //clickとmouseもどちらも高校で習う水準の単語だが，クリックやマウスは日常に含まれるのでは？
-//eventはScratchのイベントとの関連，UIなど何かしらの要素で示すのもあり
+//eventはScratchのイベントとの関連，UIなど何かしらの要素で示すのもあり？
 ClickEvent.new -> click; 
 MessageEvent.new -> mes;
 KeyEvent.new -> key;
