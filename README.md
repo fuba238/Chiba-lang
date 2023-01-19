@@ -11,8 +11,9 @@
 - C言語におけるinclude文のようなおまじない要素は作らない
 
 ## ファイルの説明
-### Language
+### [Language](https://github.com/fuba238/Chiba-lang/tree/main/Language)
 言語仕様やメソッド一覧をまとめている
+
 
 ### grammer
 ~~文法について記述している~~あんまり更新していない
