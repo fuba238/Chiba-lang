@@ -1,5 +1,5 @@
 https://scratch.mit.edu/projects/111000045/editor/
-跳ね返るボール
+跳ね返るボールサンプル
 
 ClickEvent.new -> click;
 KeyEvent.new -> key;
