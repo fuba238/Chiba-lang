@@ -4,32 +4,28 @@ MessageEvent.new -> mes;
 ClickEvent.new -> click;
 
 Splite.new -> cat;
-Splite.new -> apple;
+Splite.new show:false-> apple;
 
-//ネコ
-click.match {
-  ""
+{ click="flag" }.if {
   cat.say "りんごをクリックしよう";
   apple.show true;
-  100 |> apple.y;
-}
+  apple.move y:100;
+};
 
-{mes="message1"}.if{
+//音はまだ検討していない，コスチュームや背景のように数値と名前を持った要素でクラス内に入っててもいい気がする
+//音を検討していない理由として，スプライトにゆるキャラを使うなら喋る必要がないんじゃないか
+{ mes="渡した" }.if {
   cat.say "ありがとう";
-  cat.sound "1";
-}
-//りんご
-ev.click "flag",() => {
-  apple.show;
-  100 -> apple.y;
-}
+  cat.sound 0;
+};
 
-ev.click "splite",(name) => {
-  name = "apple".if {
-    cat, apple |> kn.touch = false.while {
-      apple.y - 10 -> apple.y
+{ click="apple" }.if {
+  true.while {
+    { apple |> cat.touch }.if {
+      break;
     }
-    apple.hide;
-    ev.send "message1";
-  }
-}
+    apple.move_step y:-10;
+  };
+  apple.show false;
+  "渡した" |> mes;
+};
