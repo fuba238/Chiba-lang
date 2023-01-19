@@ -1,6 +1,6 @@
 https://scratch.mit.edu/projects/698302333/editor/
-ジャンプする
-
+ジャンプするプログラム
+　
 ClickEvent.new -> click;
 Splite.new name:"ねこ" -> cat;
 
