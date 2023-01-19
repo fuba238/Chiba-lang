@@ -1,6 +1,5 @@
 https://scratch.mit.edu/projects/568734887/editor/
-弾を発射する
-
+弾を発射するプログラム
 
 CliclEvent.new -> click;
 KeyEvent.new -> key;
