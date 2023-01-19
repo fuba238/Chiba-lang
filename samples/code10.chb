@@ -1,34 +1,24 @@
 https://scratch.mit.edu/projects/24182947/editor/
 
-Event.new -> ev;
+ClickEvent.new -> click;
 splite.new x:-96, y:33, turn:90 -> wizard;
 splite.new x:47, y:-29, turn:-177 -> lightning;
 splite.new x:174, y:-34, turn:-96 -> ghost1;
 splite.new x:95, y:37, turn:-96 -> ghost2;
 
-ev.click "flag",() => {
+{ click="flag" }.if {
+    0 -> lp1;
+    120 -> lp2;
     true.while {
-        lightning.show;
-        1 |> wait;
-        lightning.hide;
-        0.2 |> wait;
-    }
-}
-
-ev.click "flag",() => {
-    0 -> lp;
-    true.while {
-        lp + 10 -> lp;
-        lp |> sin -> changeY;
-        ghost1.y + changeY -> ghost1.y;
-    }
-}
-
-ev.click "flag",() => {
-    120 -> lp;
-    true.while {
-        lp + 10 -> lp;
-        lp |> sin -> changeY;
-        ghost2.y + changeY -> ghost2.y;
-    }
-}
+        lp1 + 10 -> lp1;
+        lp2 + 10 -> lp2;
+        lp1 |> sin -> num1_y;
+        lp2 |> sin -> num2_y;
+        ghost1.move_step y:num1_y;
+        ghost2.move_step y:num2_y;
+        lightning.show true;
+        {1.seconds}.wait;
+        lightning.show false;
+        {0.2.seconds}.wait;
+    };
+};
