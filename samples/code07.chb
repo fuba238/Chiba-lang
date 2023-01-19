@@ -5,7 +5,7 @@ KeyEvent.new -> key;
 
 Splite.new name:"ねこ", x: -216,y: -136,size: 50,turn: 90 -> cat;
 Splite.new name:"しかく", x: 1,y:-188,size: 100,turn: 90 -> hole;
-
+ 
 //関数
 () => {
   { 1~4 }.each {
