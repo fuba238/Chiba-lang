@@ -15,12 +15,12 @@
 言語仕様やメソッド一覧をまとめている
 
 
-### grammer
+### [grammer](https://github.com/fuba238/Chiba-lang/tree/main/grammer)
 ~~文法について記述している~~あんまり更新していない
 
-### pegjs
+### [pegjs](https://github.com/fuba238/Chiba-lang/tree/main/pegjs)
 構文解析器を開発していた，test.pegjsが一番進んでるけど中途半端
 
-### sample
+### [samples](https://github.com/fuba238/Chiba-lang/tree/main/samples)
 本言語を使用したときのサンプルプログラムを作った
 主にScratchと類似した機能
