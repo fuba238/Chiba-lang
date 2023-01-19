@@ -1,7 +1,11 @@
 https://scratch.mit.edu/projects/244894684/editor/
 
-//Eventクラスの宣言
-Event.new -> ev; 
+//ClickEventクラスの宣言 
+//clickとmouseもどちらも高校で習う水準の単語だが，クリックやマウスは日常に含まれるのでは？
+//eventはScratchのイベントとの関連，UIなど何かしらの要素で示すのもあり
+ClickEvent.new -> click; 
+MessageEvent.new -> mes;
+KeyEvent.new -> key;
 
 //スプライトの作成
 Splite.new -> number;
@@ -10,30 +14,61 @@ Splite.new -> rice;
 //ステージ
 Stage.new -> stage;
 
-{ ev = "flag" }.then {
-  "リセット" |> ev;
-}
+//パターン1 全部ifでも問題ない？　現時点では，スプライトが所有している処理の状態ではない．
+{ click = "flag" }.if {
+  "リセット" |> mes;
+};
 
-{ ev = "space" }.then {
-  "次のフレーム" |> ev;
+{ key = "space" }.if {
+  "次のフレーム" |> mes;
   {1.seconds}.wait;
-}
-{ ev = "rihtarrow" }.then {
-  "次のフレーム" |> ev;
-}
+};
+{ key = "rihtarrow" }.if {
+  "次のフレーム" |> mes;
+};
 
-{ ev = "leftarrow" }.then {
+{ key = "leftarrow" }.if {
   "前のフレーム" |> ev;
-}
-{ ev = "リセット" }.then {
+};
+{ mes = "リセット" }.if {
   number.costume 1;
   rice.costume 1;
-}
-{ ev = "次のフレーム" }.then {
+};
+{ mes = "次のフレーム" }.if {
   number.next_costume;
   rice.next_costume;
-}
-{ ev = "前のフレーム" }.then {
+};
+{ mes = "前のフレーム" }.if {
   number.back_costume;
   rice.back_costume;
-}
+};
+
+//パターン2(検討要素)
+key.match {
+  "space".case { 
+    "次のフレーム" |> mes;
+    {1.seconds}.wait;
+  };
+  "rightarrow".case {
+    "次のフレーム" |> mes;
+  };
+  "leftarrow".case {
+    "前のフレーム" |> mes;
+  };
+};
+
+mes.match {
+  "リセット".case {
+    //costumeも高校水準だが，Scratchの専門用語のようなもの，改善の余地はある
+    number.costume 1;
+    rice.costume 1;
+  };
+  "次のフレーム".case {
+    number.next_costume;
+    rice.next_costume;
+  };
+  "前のフレーム".case {
+    number.costume number.costume_number-1; //ブロックは必要？
+    rice.costume {rice.costume_number-1}; //ブロックありバージョン
+  };
+};
