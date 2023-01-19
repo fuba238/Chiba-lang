@@ -1,40 +1,18 @@
-https://scratch.mit.edu/projects/111000045/editor/
+https://scratch.mit.edu/projects/698260617/editor/
 
-//「イベント」を司るEventライブラリ
-Event.new -> ev;
-//「調べる」を司るKnowライブラリ
-Know.new -> kn;
+Splite.new name:"ねこ" -> cat;
+KeyEvent.new -> key;
 
-stage.new -> stage1;
-balls.new x:-34, y:3 -> ball;
-paddles.new x:28, y:-117, size:85, turn:-90 -> paddle;
+(direction) => {
+    cat.turn direction;
+    cat.walk;
+    cat.next_costume;
+} -> moving;
 
-//ballの挙動
-ev.click "flag",() => {
-    ball.turn 45;
-    //無限ループ
-    true.while; {
-        ball.walk 10;
-        //「接触」を調べる　スプライトorステージを比較し，接触を判定
-        ball, paddle |> kn.touch.if {
-            180 - ball.turn -> ball.turn;
-        } else {
-            //「もし橋に着いたら，跳ね返る」をステージとスプライトの接触で応用
-            stage, ball |> kn.touch.if {
-                ball.return;
-            }
-        }
-    }
-}
+{ key="rightarrow" }.if {
+    90 |> moving;
+};
 
-//paddleの挙動
-ev.click "flag",() => {
-    true.while {
-        ev.receive "keypress",( key ) => {
-            key.case {
-                "rightarrow" => paddle.move x:+20;
-                "leftarrow"  => paddle.move x:-20;
-            }
-        }
-    }
-}
+{ key="leftarrow" }.if {
+    -90 |> moving;
+};
